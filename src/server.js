@@ -26,6 +26,11 @@ app.post('/', async (req, res) => {
   res.send(film)
 })
 
+app.get('/', async (req, res) => {
+  const films = await Film.find()
+  res.send(films)
+})
+
 app.listen(port, () => {
   console.log('App running')
   mongoose.connect('mongodb://127.0.0.1:27017/movies')
