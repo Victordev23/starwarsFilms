@@ -26,6 +26,11 @@ app.post('/', async (req, res) => {
   res.send(film)
 })
 
+app.delete('/:id', async (req, res) =>{
+  const film = await Film.findByIdAndDelete(req.params.id)
+  res.send(film)
+})
+
 app.get('/', async (req, res) => {
   const films = await Film.find()
   res.send(films)
