@@ -21,12 +21,22 @@ app.post('/', async (req, res) => {
     image_url: req.body.image_url,
     trailer_url: req.body.image_url
   })
-  
+
   await film.save()
   res.send(film)
 })
 
-app.delete('/:id', async (req, res) =>{
+app.put('/:id', async (req, res) => {
+  const film = await Film.findByIdAndUpdate(req.params.id, {
+    title: req.body.title,
+    description: req.body.description,
+    image_url: req.body.image_url,
+    trailer_url: req.body.trailer_url
+  })
+  res.send(film)
+})
+
+app.delete('/:id', async (req, res) => {
   const film = await Film.findByIdAndDelete(req.params.id)
   res.send(film)
 })
